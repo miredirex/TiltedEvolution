@@ -32,13 +32,22 @@ jobs:
           git submodule sync --recursive
           git submodule update --init --force --recursive --depth=1
 
+      # Cache xmake dependencies
+      - name: Cache xmake dependencies
+        uses: actions/cache@v4
+        with:
+          key: ${{ runner.os }}-xmake-${{ matrix.mode }}-${{ hashFiles('**/xmake.lua') }}
+          path: |
+            ~/AppData/Local/.xmake
+
       # Install xmake
       - name: Setup xmake
         uses: xmake-io/github-action-setup-xmake@v1
         with:
           xmake-version: 2.9.5
+          # This doesn't cache dependencies, only xmake itself
           actions-cache-folder: '.xmake-cache'
-          actions-cache-key: ${{ matrix.os }}-${{ matrix.mode }}
+          actions-cache-key: 'windows'
 
       - name: Configure xmake and install dependencies
         run: xmake config --arch=${{ matrix.arch }} --mode=${{ matrix.mode }} --yes -vD
