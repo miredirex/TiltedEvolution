@@ -8,6 +8,8 @@ on:
   push:
     branches:
       - master
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   build:
@@ -35,6 +37,8 @@ jobs:
         uses: xmake-io/github-action-setup-xmake@v1
         with:
           xmake-version: 2.9.5
+          actions-cache-folder: '.xmake-cache'
+          actions-cache-key: ${{ matrix.os }}-${{ matrix.mode }}
 
       - name: Configure xmake and install dependencies
         run: xmake config --arch=${{ matrix.arch }} --mode=${{ matrix.mode }} --yes -vD
@@ -80,11 +84,11 @@ jobs:
 
       # Upload artifact
 
-      - name: Store short commit hash
-        run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
+      - name: Store version string
+        run: echo "STR_VERSION=$(git describe --tags)" >> $env:GITHUB_ENV
 
       - name: Upload playable build
         uses: actions/upload-artifact@v4
         with:
-          name: Skyrim Together Build (${{ env.SHORT_SHA }})
+          name: Skyrim Together Build (${{ env.STR_VERSION }})
           path: str-build/
