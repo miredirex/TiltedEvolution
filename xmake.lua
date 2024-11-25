@@ -57,7 +57,7 @@ add_requireconfs("*.cmake", { version = "3.30.2", override = true })
 add_requireconfs("*.openssl", { version = "1.1.1-w", override = true })
 add_requireconfs("*.zlib", { version = "v1.3.1", override = true })
 if is_plat("linux") then
-    add_requireconfs("*.libcurl", { version = "8.7.1", override = true })
+    add_requireconfs("*.libcurl", { version = "7.84.0", override = true })
 end
 
 add_requireconfs("cpp-httplib", {configs = {ssl = true}})
