@@ -92,6 +92,7 @@ jobs:
 
       - name: Remove unnecessary build files, keep .pdb
         run: |
+          tree /F str-build/
           mkdir str-pdb
           mv str-build/SkyrimTogetherReborn/SkyrimTogether.pdb, str-build/SkyrimTogetherReborn/SkyrimTogetherServer.pdb str-pdb
           rm str-build/SkyrimTogetherReborn/*.pdb, str-build/SkyrimTogetherReborn/*.lib
