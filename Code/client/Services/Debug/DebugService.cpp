@@ -67,11 +67,11 @@
 #include <inttypes.h>
 extern thread_local bool g_overrideFormId;
 
-constexpr char kBuildTag[] = "Build: " BUILD_COMMIT " " BUILD_BRANCH " EVO\nBuilt: " __TIMESTAMP__;
+constexpr char kBuildTag[] = "UI fix active (" BUILD_COMMIT "-2a)\n\nBuild: " BUILD_COMMIT " " BUILD_BRANCH " EVO\nBuilt: " __TIMESTAMP__;
 static void DrawBuildTag()
 {
     auto* pWindow = BSGraphics::GetMainWindow();
-    const ImVec2 coord{50.f, static_cast<float>((pWindow->uiWindowHeight + 25) - 100)};
+    const ImVec2 coord{50.f, static_cast<float>((pWindow->uiWindowHeight + 25) - 150)};
     ImGui::GetBackgroundDrawList()->AddText(ImGui::GetFont(), ImGui::GetFontSize(), coord, ImColor::ImColor(255.f, 0.f, 0.f), kBuildTag);
 }
 
