@@ -280,6 +280,12 @@ NTSTATUS WINAPI TP_LdrLoadDll(const wchar_t* apPath, uint32_t* apFlags, UNICODE_
             // this signals windows to *NOT TRY* loading it again at a later time.
             return 0xC0000428;
         }
+        auto d = &fileName[pos + 1];
+        if (std::wcscmp(d, L"NvCamera64.dll") == 0)
+        {
+           Die(L"Disable NVIDIA Overlay before launching Skyrim Together with the UI fix.", true);
+           return 0xC0000428;
+        }
     }
 
     return RealLdrLoadDll(apPath, apFlags, apFileName, apHandle);

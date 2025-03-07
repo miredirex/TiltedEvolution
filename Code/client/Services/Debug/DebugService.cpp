@@ -67,7 +67,7 @@
 #include <inttypes.h>
 extern thread_local bool g_overrideFormId;
 
-constexpr char kBuildTag[] = "UI fix active (" BUILD_COMMIT "-2a)\n\nBuild: " BUILD_COMMIT " " BUILD_BRANCH " EVO\nBuilt: " __TIMESTAMP__;
+constexpr char kBuildTag[] = "UI fix active (" BUILD_COMMIT "-2b)\n\nBuild: " BUILD_COMMIT " " BUILD_BRANCH " EVO\nBuilt: " __TIMESTAMP__;
 static void DrawBuildTag()
 {
     auto* pWindow = BSGraphics::GetMainWindow();
